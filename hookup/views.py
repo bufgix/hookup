@@ -67,15 +67,15 @@ def get_ngrok_url():
 @app.route("/api/page/new", methods=["POST"])
 def new_page():
     if 'page' in request.files:
-        file = request.files['page']
-        file.save(str(app.config['UPLOAD_FOLDER'] /
-                      f"{request.form['pageTitle']}.html"))
         page = Page(name=request.form['pageTitle'],
                     source=f"{request.form['pageTitle']}.html")
         user = User.query.first()
         user.pages.append(page)
         try:
             user.save()
+            file = request.files['page']
+            file.save(str(app.config['UPLOAD_FOLDER'] /
+                          f"{request.form['pageTitle']}.html"))
         except IntegrityError as ex:
             return jsonify(f"{request.form['pageTitle']} isimde bir site zaten mevcut"), 500
     else:

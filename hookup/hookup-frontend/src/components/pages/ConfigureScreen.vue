@@ -8,12 +8,6 @@
             <div class="md-title">Kayıtlı Siteler</div>
           </md-card-header>
           <md-card-content>
-            <md-progress-spinner
-              :md-diameter="30"
-              :md-stroke="3"
-              md-mode="indeterminate"
-              v-if="loading"
-            ></md-progress-spinner>
             <md-list v-for="(site, index) in sites" :key="index">
               <md-list-item>
                 {{ site.name }}
@@ -41,14 +35,22 @@
             <div class="md-title">Şuanki Site</div>
           </md-card-header>
           <md-card-content>
-            <md-field>
-              <label>Site ismi</label>
-              <md-input v-model="currentSite.name" disabled></md-input>
-            </md-field>
-            <md-field>
-              <label>Site Kaynak kodu</label>
-              <md-textarea v-model="currentSite.source" disabled></md-textarea>
-            </md-field>
+            <md-progress-spinner
+              :md-diameter="30"
+              :md-stroke="3"
+              md-mode="indeterminate"
+              v-show="loading"
+            ></md-progress-spinner>
+            <div v-show="!loading">
+              <md-field>
+                <label>Site ismi</label>
+                <md-input v-model="currentSite.name" disabled></md-input>
+              </md-field>
+              <md-field>
+                <label>Site Kaynak kodu</label>
+                <md-textarea v-model="currentSite.source" disabled></md-textarea>
+              </md-field>
+            </div>
           </md-card-content>
           <md-snackbar
             md-position="center"
@@ -98,11 +100,12 @@ export default {
     async getSites() {
       ApiService.getPages().then(data => {
         this.sites = data;
-        this.loading = false;
-      });
-      ApiService.getCurrentPage().then(data => {
-        this.currentSite = data;
-        this.loading = false;
+        ApiService.getCurrentPage().then(data => {
+          this.currentSite = data;
+          setTimeout(() => {
+            this.loading = false;
+          }, 600);
+        });
       });
     },
     async deleteSite(site) {

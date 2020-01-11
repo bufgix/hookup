@@ -3,9 +3,6 @@
   <div class="page-container">
     <md-app md-waterfall md-mode="fixed">
       <md-app-toolbar class="md-primary">
-        <md-button class="md-icon-button" @click="toggleMenu" v-if="!menuVisible">
-          <md-icon>menu</md-icon>
-        </md-button>
         <span class="md-title">Hook Up</span>
         <div class="md-toolbar-section-end">
           <div style="display: flex; align-items: baseline;">
@@ -24,15 +21,9 @@
         </div>
       </md-app-toolbar>
 
-      <md-app-drawer :md-active.sync="menuVisible" md-persistent="mini">
+      <md-app-drawer md-permanent="full">
         <md-toolbar class="md-transparent" md-elevation="0">
           <span>Panel</span>
-
-          <div class="md-toolbar-section-end">
-            <md-button class="md-icon-button md-dense" @click="toggleMenu">
-              <md-icon>keyboard_arrow_left</md-icon>
-            </md-button>
-          </div>
         </md-toolbar>
 
         <md-list>
