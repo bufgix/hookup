@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!-- Compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <style>
+      body {
+        height: 100%;
+        width: 100%;
+        background-color: #424242;
+      }
+      .container {
+        height: 100%;
+      }
+    </style>
+    <title>Hook-up Login</title>
+  </head>
+  <body>
+    <div
+      class="valign-wrapper"
+      style="width:100%;height:100%;position: absolute;"
+    >
+      <div class="valign" style="width:100%;">
+        <div class="container">
+          <div class="row">
+            <div class="col s12 m6 offset-m3">
+              <div class="card">
+                <div class="card-content">
+                  <span class="card-title black-text">Giriş Yap</span>
+                  <form method="POST">
+                    <div class="row">
+                      <div class="input-field col s12">
+                        <input
+                          id="username"
+                          type="text"
+                          class="validate"
+                          name="username"
+                        />
+                        <label for="username" class="active"
+                          >Kullanıcı adı</label
+                        >
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="input-field col s12">
+                        <input
+                          id="password"
+                          type="password"
+                          class="validate"
+                          name="password"
+                        />
+                        <label for="password" class="active">Parola</label>
+                      </div>
+                    </div>
+                    <div class="card-action">
+                      <input type="submit" class="btn" value="Giriş yap" />
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  </body>
+</html>
