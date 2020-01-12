@@ -8,5 +8,7 @@ module.exports = {
   urlGetCurrent: `${base}/api/page/get_current`,
   urlSetCurrent: `${base}/api/page/set_current`,
   urlPages: `${base}/api/pages`,
-  urlLogout: `${base}/logout`
+  urlGetRecords: `${base}/api/record/list`,
+  urlGetRecordsByPage: `${base}/api/record/by_page`,
+  urlLogout: `${base}/adminlogout`
 };

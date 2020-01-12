@@ -30,7 +30,7 @@
       </div>
 
       <div class="md-layout-item">
-        <md-card>
+        <md-card class="current-card">
           <md-card-header>
             <div class="md-title">Şuanki Site</div>
           </md-card-header>
@@ -140,5 +140,13 @@ export default {
 .md-snackbar {
   background-color: #212121;
   color: aliceblue;
+}
+
+.md-card {
+    max-height: 1000px;
+}
+
+.md-textarea {
+    height: 900px;
 }
 </style>

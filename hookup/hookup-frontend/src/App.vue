@@ -10,10 +10,13 @@ import Vuematerial from "vue-material";
 import "vue-material/dist/vue-material.min.css";
 import "vue-material/dist/theme/default-dark.css"; // This line here
 import MainScreen from "./components/Mainscreen";
-import VueClipboard from 'vue-clipboard2'
+import VueClipboard from "vue-clipboard2";
+import JsonViewer from "vue-json-viewer/ssr";
+import 'vue-json-viewer/style.css'
 
 Vue.use(Vuematerial);
 Vue.use(VueClipboard);
+Vue.use(JsonViewer);
 
 export default {
   name: "app",

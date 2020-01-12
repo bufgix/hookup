@@ -53,20 +53,16 @@
               </span>
             </md-list-item>
           </router-link>
-
-          <router-link to="/exit">
-            <md-list-item>
-              <md-icon>exit_to_app</md-icon>
-              <span class="md-list-item-text">Çıkış yap</span>
-            </md-list-item>
-          </router-link>
-
           <router-link to="/about">
             <md-list-item>
               <md-icon>info</md-icon>
               <span class="md-list-item-text">Hakkında</span>
             </md-list-item>
           </router-link>
+          <md-list-item @click="logOut()">
+            <md-icon>exit_to_app</md-icon>
+            <span class="md-list-item-text">Çıkış yap</span>
+          </md-list-item>
         </md-list>
       </md-app-drawer>
 
@@ -79,6 +75,7 @@
 
 <script>
 import ApiService from "../services/api";
+import { urlLogout } from "../services/endpoints";
 
 export default {
   data: () => ({
@@ -106,6 +103,9 @@ export default {
       this.$copyText(this.ngrokUrl).then(() => {
         this.copyStatus = "Koyalandı";
       });
+    },
+    logOut() {
+      window.location.href = urlLogout;
     }
   }
 };

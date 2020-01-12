@@ -2,6 +2,7 @@ from flask_login import UserMixin
 from hookup import db, login_manager, app
 import os
 import json
+import datetime
 
 
 @login_manager.user_loader
@@ -51,6 +52,7 @@ class Record(db.Model):
     _data = db.Column(db.String, default="No data")
     page_id = db.Column(db.Integer, db.ForeignKey(
         'page.id'), nullable=False)
+    created_date = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
     @property
     def data(self):

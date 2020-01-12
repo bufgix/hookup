@@ -30,7 +30,7 @@ def fish():
         r.data = request.form
         current_page.records.append(r)
         user.save()
-        return jsonify(current_page.records[0].data)
+        return jsonify("thank you!")
 
     current_page = user.pages[user.current_page]
 
@@ -56,7 +56,7 @@ def main(path):
 @app.route("/adminlogout")
 def logout():
     logout_user()
-    return redirect("/")
+    return redirect("/adminlogin")
 
 
 @app.route("/api/get_ngrok_url")
@@ -86,12 +86,15 @@ def new_page():
 
 @app.route("/api/page/delete", methods=["POST"])
 def delete_page():
+    user = User.query.first()
     page_name = request.json.get('pageName')
     source_file = app.config['UPLOAD_FOLDER'] / f"{page_name}.html"
-    source_file.unlink()  # delete old page
     page = Page.query.filter_by(name=page_name).one()
+    if len(user.pages) == user.current_page + 1:
+        user.current_page -= 1
     db.session.delete(page)
     db.session.commit()
+    source_file.unlink()  # delete old page
 
     return jsonify(f"{page_name} başarıyla silindi"), 200
 
@@ -136,3 +139,29 @@ def list_pages():
         })
     current_page = user.pages[user.current_page]
     return jsonify(pages), 200
+
+
+@app.route("/api/record/by_page")
+def records_all():
+    user = User.query.first()
+    r_data = list()
+    for page in user.pages:
+        record_list = [rec.data for rec in page.records]
+        r_data.append({
+            "name": page.name,
+            "records": record_list
+        })
+    return jsonify(r_data)
+
+
+@app.route("/api/record/list")
+def record_list():
+    records = Record.query.order_by(Record.created_date.desc()).all()
+    r_data = []
+    for record in records:
+        r_data.append({
+            "pageName": record.page.name,
+            "data": record.data
+        })
+
+    return jsonify(r_data)

@@ -1,11 +1,13 @@
 import Axios from "axios";
 import {
-urlGetNgrokUrl,
-urlNewPage,
-urlDeletePage,
-urlGetCurrent,
-urlSetCurrent,
-urlPages
+  urlGetNgrokUrl,
+  urlNewPage,
+  urlDeletePage,
+  urlGetCurrent,
+  urlSetCurrent,
+  urlPages,
+  urlGetRecords,
+  urlGetRecordsByPage
 } from "./endpoints";
 
 export default {
@@ -25,13 +27,9 @@ export default {
   },
   // eslint-disable-next-line no-unused-vars
   async deletePage(data) {
-    let res = Axios.post(
-      urlDeletePage,
-      data,
-      {
-        headers: { "Content-Type": "application/json" }
-      }
-    );
+    let res = Axios.post(urlDeletePage, data, {
+      headers: { "Content-Type": "application/json" }
+    });
     return res;
   },
   async getCurrentPage() {
@@ -45,5 +43,13 @@ export default {
       }
     });
     return res;
+  },
+  async getRecords() {
+    let res = await Axios.get(urlGetRecords);
+    return res.data;
+  },
+  async getRecordsByPage() {
+    let res = await Axios.get(urlGetRecordsByPage);
+    return res.data;
   }
 };
