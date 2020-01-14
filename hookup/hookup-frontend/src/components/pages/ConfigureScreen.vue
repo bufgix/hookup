@@ -5,7 +5,7 @@
       <div class="md-layout-item">
         <md-card>
           <md-card-header>
-            <div class="md-title">Kayıtlı Siteler</div>
+            <div class="md-title">Registered Pages</div>
           </md-card-header>
           <md-card-content>
             <md-list v-for="(site, index) in sites" :key="index">
@@ -32,7 +32,7 @@
       <div class="md-layout-item">
         <md-card class="current-card">
           <md-card-header>
-            <div class="md-title">Şuanki Site</div>
+            <div class="md-title">Current Page</div>
           </md-card-header>
           <md-card-content>
             <md-progress-spinner
@@ -43,13 +43,14 @@
             ></md-progress-spinner>
             <div v-show="!loading">
               <md-field>
-                <label>Site ismi</label>
+                <label>Page name</label>
                 <md-input v-model="currentSite.name" disabled></md-input>
               </md-field>
               <md-field>
-                <label>Site Kaynak kodu</label>
+                <label>Page source code</label>
                 <md-textarea v-model="currentSite.source" disabled></md-textarea>
               </md-field>
+              <md-button :href="base" class="md-primary" target="_blank">Preview</md-button>
             </div>
           </md-card-content>
           <md-snackbar
@@ -62,7 +63,7 @@
             <md-button
               :class="{ 'md-primary' : success, 'md-accent': !success}"
               @click="showStack = false"
-            >Anladım</md-button>
+            >I got this</md-button>
           </md-snackbar>
         </md-card>
       </div>
@@ -73,6 +74,7 @@
 <script>
 /* eslint-disable no-console */
 import ApiService from "../../services/api";
+import { base } from "../../services/endpoints";
 
 export default {
   data: () => ({
@@ -81,7 +83,8 @@ export default {
     loading: true,
     showStack: false,
     snackBarData: "",
-    success: false
+    success: false,
+    base
   }),
   created() {
     this.getSites();
@@ -143,10 +146,10 @@ export default {
 }
 
 .md-card {
-    max-height: 1000px;
+  max-height: 1000px;
 }
 
 .md-textarea {
-    height: 900px;
+  height: 900px;
 }
 </style>

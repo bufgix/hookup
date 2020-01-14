@@ -2,19 +2,19 @@
   <div>
     <md-card>
       <md-card-header>
-        <div class="md-title" style="float: left">Site ekle</div>
+        <div class="md-title" style="float: left">Add Page</div>
       </md-card-header>
       <md-card-content>
         <form @submit.prevent="submitForm">
           <md-field>
-            <label>Site ismi</label>
+            <label>Page name</label>
             <md-input v-model="pageName"></md-input>
           </md-field>
           <md-field>
-            <label>Site kaynak kodu</label>
+            <label>Page source code</label>
             <md-file ref="page" @md-change="handlePageUpload" />
           </md-field>
-          <md-button class="md-raised md-primary" type="submit">Kaydet</md-button>
+          <md-button class="md-raised md-primary" type="submit">Save</md-button>
           <md-snackbar
             md-position="center"
             :md-duration="4000"
@@ -25,7 +25,7 @@
             <md-button
               :class="{ 'md-primary' : success, 'md-accent': !success}"
               @click="showSnack = false"
-            >Anladım</md-button>
+            >I Got This</md-button>
           </md-snackbar>
         </form>
       </md-card-content>

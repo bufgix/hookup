@@ -1,13 +1,26 @@
 <template>
   <div>
     <md-card>
-      <md-card-header>Şonuçlar</md-card-header>
+      <md-card-header>
+        <md-card-header-text>
+          <h2>Results</h2>
+        </md-card-header-text>
+
+        <md-button class="md-icon-button" md-menu-trigger @click="getResult">
+          <md-icon>refresh</md-icon>
+        </md-button>
+      </md-card-header>
+
       <md-card-content>
         <div v-if="!isEmpty">
           <md-list class="md-double-line" v-for="(result, index) in results" :key="index">
             <md-list-item>
               <md-card>
-                <md-card-header>{{ result.pageName }}</md-card-header>
+                <md-card-header>
+                  <h3>{{ result.pageName }}</h3>
+                  <code>{{ result.date }}</code>
+                </md-card-header>
+
                 <div>
                   <json-viewer :value="result.data" :expand-depth="2" theme="dark-viewer"></json-viewer>
                 </div>
@@ -19,8 +32,8 @@
           <md-empty-state
             md-rounded
             md-icon="visibility_off"
-            md-label="Hiç Kayıt Yok"
-            md-description="Herhangi bir kayıt işlenmemiş :("
+            md-label="Nothing in results"
+            md-description="Results will be here"
           ></md-empty-state>
         </div>
       </md-card-content>
@@ -36,9 +49,9 @@ export default {
     results: []
   }),
   computed: {
-      isEmpty: function() {
-          return this.results.length == 0;
-      }
+    isEmpty: function() {
+      return this.results.length == 0;
+    }
   },
   methods: {
     getResult: function() {

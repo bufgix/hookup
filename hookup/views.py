@@ -77,11 +77,11 @@ def new_page():
             file.save(str(app.config['UPLOAD_FOLDER'] /
                           f"{request.form['pageTitle']}.html"))
         except IntegrityError as ex:
-            return jsonify(f"{request.form['pageTitle']} isimde bir site zaten mevcut"), 500
+            return jsonify(f"{request.form['pageTitle']} already exists"), 500
     else:
-        return jsonify(f"Kaynak dosyası eksik"), 500
+        return jsonify(f"Missing soruce code"), 500
 
-    return jsonify(f"{request.form['pageTitle']} başarıyla kaydedildi"), 200
+    return jsonify(f"{request.form['pageTitle']} successfully deleted"), 200
 
 
 @app.route("/api/page/delete", methods=["POST"])
@@ -96,7 +96,7 @@ def delete_page():
     db.session.commit()
     source_file.unlink()  # delete old page
 
-    return jsonify(f"{page_name} başarıyla silindi"), 200
+    return jsonify(f"{page_name} successfully deleted"), 200
 
 
 @app.route("/api/page/get_current")
@@ -121,7 +121,7 @@ def set_current_page():
     return jsonify({
         "name": current_page.name,
         "source": current_page.get_source_content(),
-        "msg": f"{current_page.name} başarıyla ayarlandı."
+        "msg": f"{current_page.name} is now current page!"
     }), 200
 
 
@@ -161,7 +161,8 @@ def record_list():
     for record in records:
         r_data.append({
             "pageName": record.page.name,
-            "data": record.data
+            "data": record.data,
+            "date": record.created_date.strftime("%H.%M.%S - %d/%m/%Y")
         })
 
     return jsonify(r_data)

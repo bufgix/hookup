@@ -7,8 +7,8 @@ let win
 function createWindow () {
   // Tarayıcı penceresini oluştur.
   win = new BrowserWindow({
-    width: 1172,
-    height: 600,
+    width: 1380,
+    height: 640,
     webPreferences: {
       nodeIntegration: true
     },

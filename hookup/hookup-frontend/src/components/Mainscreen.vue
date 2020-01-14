@@ -31,7 +31,7 @@
             <md-list-item class="md-accent">
               <md-icon>remove_red_eye</md-icon>
               <span class="md-list-item-text">
-                <span>Yapılandır</span>
+                <span>Configure</span>
               </span>
             </md-list-item>
           </router-link>
@@ -40,7 +40,7 @@
             <md-list-item class="md-accent">
               <md-icon>add</md-icon>
               <span class="md-list-item-text">
-                <span>Site ekle</span>
+                <span>Add Page</span>
               </span>
             </md-list-item>
           </router-link>
@@ -49,19 +49,19 @@
             <md-list-item>
               <md-icon>list</md-icon>
               <span class="md-list-item-text">
-                <span>Sonuçlar</span>
+                <span>Results</span>
               </span>
             </md-list-item>
           </router-link>
           <router-link to="/about">
             <md-list-item>
               <md-icon>info</md-icon>
-              <span class="md-list-item-text">Hakkında</span>
+              <span class="md-list-item-text">About</span>
             </md-list-item>
           </router-link>
           <md-list-item @click="logOut()">
             <md-icon>exit_to_app</md-icon>
-            <span class="md-list-item-text">Çıkış yap</span>
+            <span class="md-list-item-text">Log out</span>
           </md-list-item>
         </md-list>
       </md-app-drawer>
@@ -82,7 +82,7 @@ export default {
     menuVisible: false,
     loading: true,
     ngrokUrl: null,
-    copyStatus: "Kopyala"
+    copyStatus: "Copy"
   }),
   created() {
     this.getNgrokUrl();
@@ -101,7 +101,7 @@ export default {
     },
     doCopy() {
       this.$copyText(this.ngrokUrl).then(() => {
-        this.copyStatus = "Koyalandı";
+        this.copyStatus = "Copied";
       });
     },
     logOut() {
