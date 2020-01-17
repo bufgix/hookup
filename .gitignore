@@ -10,8 +10,8 @@ __pycache__/
 .Python
 build/
 develop-eggs/
-dist/
 downloads/
+node_modules/
 eggs/
 .eggs/
 lib/
@@ -131,3 +131,5 @@ dmypy.json
 .vscode
 
 *.db
+
+!hookup/hookup-frontend/dist/*
