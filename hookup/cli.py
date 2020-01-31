@@ -6,7 +6,7 @@ DEFAULT_SITES = ["facebook", "twitter", "netflix", "github"]
 
 def create_superuser():
     username = input("Username: ")
-    password = getpass.getpass("password")
+    password = getpass.getpass("Password ")
     user = User(username=username, password=password)
     user.save()
 
