@@ -14,7 +14,7 @@
 
 A phishing tool is written in Python and VueJS
 
-## Installation
+## Installation 📀
 
 ### Step 1
 ---
@@ -55,7 +55,7 @@ If everything is ok, you'll see ngrok page like this
 
 And now, open your browser and visit `http://localhost:5000/adminpage` for the control panel.
 
-### Step 3
+## Usage 👨‍💻
 ---
 
 ![img](https://i.imgyukle.com/2020/01/31/nPgm0I.png)
