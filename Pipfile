@@ -13,4 +13,4 @@ flask-sqlalchemy = "*"
 flask-login = "*"
 requests = "*"
 flask-cors = "*"
-
+gitpython = "*"

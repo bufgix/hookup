@@ -10,5 +10,6 @@ module.exports = {
   urlPages: `${base}/api/pages`,
   urlGetRecords: `${base}/api/record/list`,
   urlGetRecordsByPage: `${base}/api/record/by_page`,
-  urlLogout: `${base}/adminlogout`
+  urlAbout: `${base}/api/about`,
+  urlLogout: `${base}/adminlogout`,
 };

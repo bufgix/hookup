@@ -7,7 +7,8 @@ import {
   urlSetCurrent,
   urlPages,
   urlGetRecords,
-  urlGetRecordsByPage
+  urlGetRecordsByPage,
+  urlAbout
 } from "./endpoints";
 
 export default {
@@ -51,5 +52,9 @@ export default {
   async getRecordsByPage() {
     let res = await Axios.get(urlGetRecordsByPage);
     return res.data;
+  },
+  async getAbout() {
+    let res = await Axios.get(urlAbout);
+    return res.data
   }
 };

@@ -8,6 +8,10 @@ from flask_login import LoginManager
 import pathlib
 import jinja2
 
+
+__version__ = "v1.2.0"
+__version_client__ = "v1.1.0"
+
 static_folder = PROJECT_DIR / 'hookup-frontend' / 'dist' 
 upload_folder = PROJECT_DIR / 'uploads'
 
@@ -34,11 +38,9 @@ template_loader = jinja2.ChoiceLoader([
 
 app.jinja_loader = template_loader
 
-
-
 from hookup.views import *
 
 
 def start_server():
     run_with_ngrok(app)
-    app.run(debug=True)
+    app.run(debug=True, host="0.0.0.0")

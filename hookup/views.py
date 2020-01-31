@@ -1,9 +1,10 @@
 from flask import jsonify, request, session, redirect, render_template
 from flask_login import login_required, login_user, current_user, logout_user
 from sqlalchemy.exc import IntegrityError
-from hookup import app, db
+from hookup import app, db, PROJECT_DIR, __version__, __version_client__
 from functools import wraps
 import json
+import git
 
 from hookup.flask_ngrok import get_tunnel_url
 from hookup.models import User, Page, Record
@@ -166,3 +167,12 @@ def record_list():
         })
 
     return jsonify(r_data)
+
+@app.route("/api/about")
+def about():
+    repo = git.Repo(str(PROJECT_DIR.parent))
+    return jsonify({
+        "server_v": __version__,
+        "client_v": __version_client__,
+        "commit": str(repo.head.commit)
+    })
